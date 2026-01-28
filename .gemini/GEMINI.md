@@ -6,11 +6,8 @@
 
 ## Core Directives
 
-1.  **Architecture First:** Respect the project's architectural patterns and separation of concerns.
-2.  **Code Consistency:** Follow existing coding styles, naming conventions, and directory structures.
-3.  **Documentation:** Keep documentation updated, especially when modifying APIs or core logic.
-4.  **Security:** Prioritize data security and secure coding practices.
-5.  **Quality:** Ensure changes are verified with tests and linting where applicable.
+1.  **Directive 1:** [Add core directive]
+2.  **Directive 2:** [Add core directive]
 
 ---
 

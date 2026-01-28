@@ -16,10 +16,11 @@ Execute the Red-Green-Refactor cycle to implement the requested feature or fix, 
 WORKFLOW:
 
 1.  **PHASE 1: RED (The Failing Test)**
-    -   **Analyze**: Determine the appropriate testing layer (Unit, Integration, E2E).
+    -   **Analyze**: Determine if this requires a Backend Unit Test (Django) or Frontend E2E Test (Playwright). *Note: Frontend currently relies on Playwright; prefer E2E for UI flows.*
     -   **Create/Modify**: Write a test case that asserts the desired behavior.
     -   **Verify Failure**: Run the test to confirm it fails as expected (and not due to syntax errors).
-        -   *Command*: `[Run Test Command]`
+        -   *Backend*: `python manage.py test <path.to.test>`
+        -   *Frontend*: `npm run test:e2e <path/to/test>`
 
 2.  **PHASE 2: GREEN (Make it Pass)**
     -   **Implement**: Write the *minimal* amount of code necessary to make the test pass.

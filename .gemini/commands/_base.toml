@@ -1,7 +1,6 @@
 description = "General Assistance"
 prompt = """
 CONTEXT:
-@{ .gemini/memory/PLAN.md }
 @{ .gemini/memory/STYLE.md }
 
 INSTRUCTIONS:

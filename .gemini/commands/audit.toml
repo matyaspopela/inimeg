@@ -18,14 +18,14 @@ prompt = """
 - Check compliance with `risk.md`.
 
 ## 2. Architectural Integrity
-- Evaluate separation of concerns (e.g., API vs Client, Business Logic vs Presentation).
+- Evaluate separation of concerns (e.g., Django Backend vs React Frontend).
 - Check for anti-patterns, tight coupling, or circular dependencies.
 - Assess error handling: Is it graceful? Does it leak implementation details?
 
 ## 3. Code Quality & Performance
 - Review variable/function naming for clarity and consistency.
 - Identify potential performance bottlenecks (N+1 queries, expensive loops).
-- Check type hints or usage of strict typing where applicable.
+- Check type hints (Python) or usage of Typescript interfaces.
 - Ensure adherence to `style.md` and `formatting.md`.
 
 # OUTPUT FORMAT

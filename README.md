@@ -1,74 +1,84 @@
-# 🚀 Gemini CLI Engineering Kit
+# 🧠 Gemini CLI: Engineering Excellence Kit
 
-A drop-in configuration suite that transforms the Gemini CLI into a specialized **Senior Software Engineering Partner**.
+[![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-brightgreen.svg)](https://github.com/google/gemini-cli)
+[![Gemini CLI](https://img.shields.io/badge/Powered%20By-Gemini%20CLI-blue.svg)](https://github.com/google/gemini-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This kit provides a structured set of commands, roles, and memory files designed to enforce architectural standards, automate best practices (TDD, Auditing), and provide high-level mentorship.
+> **Transform the Gemini CLI from a chat assistant into a Principal Technical Consultant.**
 
----
-
-## 📦 Installation & Setup
-
-1.  **Drop it in:** Copy the `.gemini` folder into the root of your software project.
-2.  **Initialize:** Open the Gemini CLI and run the setup command to scan your project and populate the context:
-    ```bash
-    /setrepo
-    ```
-    *This will auto-detect your frameworks (React, Django, etc.), project structure, and dependencies.*
+This kit is a battle-tested configuration suite for the [Gemini CLI](https://github.com/google/gemini-cli). It provides a structured hierarchy of roles, commands, and memory systems designed to enforce architectural rigor, automate quality assurance, and mentor developers through complex technical decisions.
 
 ---
 
-## 🛠️ Command Suite
+## ✨ Key Superpowers
 
-This kit comes with specialized agents activated by specific commands.
+*   **🛡️ Governance First:** Implements a "No Code Without Specs" policy.
+*   **🧪 TDD Automation:** Built-in Red-Green-Refactor cycles for Django and React.
+*   **🔍 Deep Auditing:** Specialized agents for security, performance, and style reviews.
+*   **🧠 Persistent Memory:** A multi-layered memory system that tracks architecture, constraints, and past failures.
+*   **🏫 Integrated Mentorship:** Reviews that explain the *why*, elevating your team's technical bar.
 
-### 🧠 Strategic & Architectural
-| Command | Role | Use Case |
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+Clone this kit or copy the `.gemini/` folder into the root of your existing project:
+
+```bash
+git clone https://github.com/your-username/gemini-engineering-kit.git
+cp -r gemini-engineering-kit/.gemini /your/project/path/
+```
+
+### 2. Initialization
+Launch the Gemini CLI in your project root and run the re-indexing command:
+
+```bash
+/setrepo
+```
+
+*This command triggers a deep scan of your codebase, auto-detecting frameworks, entry points, and dependencies to populate the internal cache.*
+
+---
+
+## 🛠️ The Command Suite
+
+| Command | Specialized Agent | Mission |
 | :--- | :--- | :--- |
-| **`/plan <request>`** | **Technical Architect** | **Start here.** Analyzes requirements against your architecture. Generates specifications and execution plans *before* you write code. |
-| **`/setrepo`** | **System Scanner** | Re-indexes the codebase. Run this when switching projects or after major file structure changes. |
-
-### 💻 Development & Quality
-| Command | Role | Use Case |
-| :--- | :--- | :--- |
-| **`/tdd <feature>`** | **TDD Specialist** | Implements features using the **Red-Green-Refactor** cycle. Writes tests first, then implementation, then optimizes. |
-| **`/refactor`** | **Tech Debt Specialist** | Cleans up code, reduces complexity, and modernizes syntax *without* changing behavior. |
-
-### 🛡️ Review & Security
-| Command | Role | Use Case |
-| :--- | :--- | :--- |
-| **`/audit`** | **Security Auditor** | Performs a deep scan for OWASP vulnerabilities, anti-patterns, and architectural flaws. |
-| **`/mentor`** | **Staff Engineer** | detailed code review focused on *teaching*. Explains the "why" behind best practices. |
+| **`/plan`** | **Architect** | Requirements analysis & spec generation. (Run this before coding!) |
+| **`/tdd`** | **Engineer** | Test-Driven Development cycles (Red-Green-Refactor). |
+| **`/audit`** | **Auditor** | Security, architecture, and quality deep-dives. |
+| **`/refactor`** | **Specialist** | Code modernization and complexity reduction. |
+| **`/mentor`** | **Staff Lead** | Educational reviews focused on senior-level principles (SOLID, DRY). |
+| **`/docit`** | **Historian** | Synchronizes code changes with system documentation. |
 
 ---
 
-## ⚙️ Configuration
+## 🏗️ System Structure
 
-The brain of the agent is located in `.gemini/`. You can customize it to fit your team's style.
+The kit organizes the agent's "brain" into three distinct layers:
 
-### Core Files
-*   **`.gemini/GEMINI.md`**: The "Master Prompt". Defines the agent's core directives and active rules.
-*   **`.gemini/settings.json`**: Configures tool permissions and manually overrides project context (e.g., preferred frameworks).
-*   **`.gemini/memory/CONSTRAINTS.md`**: **Critical.** Define your project's "Laws". (e.g., "Must use Postgres", "No raw SQL", "Deploy to Railway").
+### 1. Directives (`.gemini/rules/` & `.gemini/policy/`)
+The foundational "Laws of Behavior". Includes the **Zero Clutter Protocol**, **Interrogation Protocols** (asking for logs instead of guessing), and **Security Hygiene**.
 
-### Policies & Rules (`.gemini/rules/` & `.gemini/policy/`)
-*   **`persona.md`**: Defines the agent's personality (currently set to "Senior Technical Consultant").
-*   **`style.md`**: Coding standards (Naming conventions, KISS, YAGNI).
-*   **`risk.md`**: Safety protocols (Forbidden commands, secret handling).
+### 2. Memory (`.gemini/memory/`)
+*   **`ARCHITECTURE.md`**: The source of truth for your system's design.
+*   **`CONSTRAINTS.md`**: Hard guardrails (e.g., "Must use TypeScript", "Postgres-only").
+*   **`FAILURES.md`**: A learning journal of past technical mistakes to avoid repetition.
 
----
-
-## 🧩 Workflow Example
-
-1.  **Idea:** You want to add a new user profile page.
-2.  **Plan:** Run `/plan "Add user profile page with avatar upload"`.
-    *   *Result:* Agent checks `CONSTRAINTS.md`, drafts a spec file, and lists necessary tests.
-3.  **Code:** Run `/tdd "Implement user profile model and view based on the plan"`.
-    *   *Result:* Agent writes a failing test, implements the model, and passes the test.
-4.  **Review:** Run `/audit` on the new file.
-    *   *Result:* Agent checks for file upload vulnerabilities and permission issues.
+### 3. Cache (`.gemini/cache/`)
+Transient data generated by `/setrepo` that gives the agent a real-time map of your codebase symbols and entry points.
 
 ---
 
-## 🤝 Contributing
+## ⚙️ Customization
 
-Feel free to modify the `.toml` files in `.gemini/commands/` to create your own specialized agents!
+1.  **Define your Constraints:** Update `.gemini/memory/CONSTRAINTS.md` with your project-specific rules.
+2.  **Set the Persona:** Modify `.gemini/rules/persona.md` to adjust the tone (e.g., more collaborative vs. more authoritative).
+3.  **Add Commands:** Drop new `.toml` files into `.gemini/commands/` to create custom agents.
+
+---
+
+## 📄 License
+
+This kit is released under the [MIT License](LICENSE).

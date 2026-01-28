@@ -7,7 +7,7 @@
 
 ### 2. Atomic Documentation Updates
 * **Rule:** "Code and Docs are Atomic."
-* **Enforcement:** If you modify logic in a source file, you **must** check if that logic is referenced in `.gemini/memory/ARCHITECTURE.md` or `.gemini/memory/PLAN.md` and update it in the same output turn.
+* **Enforcement:** If you modify logic in a source file, you **must** check if that logic is referenced in `.gemini/memory/ARCHITECTURE.md` and update it in the same output turn.
 
 ### 3. File Creation Constraints
 * Only create a new file if:

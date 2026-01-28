@@ -30,11 +30,20 @@ Use `glob` and `read_file` to gather necessary information before writing.
         *   `## Infrastructure Constraints`: Add rules based on deployment config (e.g., "Must be compatible with Render" if `render.yaml` exists).
         *   `## Technical Guardrails`: Mention specific lockfiles to respect (e.g., `package-lock.json`, `poetry.lock`).
 
-5.  **`GEMINI.md` (Root File)**
+5.  **`.gemini/memory/ARCHITECTURE.md`**
+    *   **Goal:** Document the system's architectural design.
+    *   **Update:**
+        *   `## 1. High-Level Overview`: Stack summary (Frontend, Backend, Databases, AI).
+        *   `## 2. Backend Architecture`: Key components in `backend/` (API, Tasks, Real-time).
+        *   `## 3. Frontend Architecture`: Stack details in `frontend/` (State, Routing, UI).
+        *   `## 4. Data Storage Strategy`: Usage of databases (Postgres, Mongo, Redis) based on `docker-compose.yml` and models.
+        *   `## 5. Security & Deployment`: Auth patterns and infrastructure.
+
+6.  **`GEMINI.md` (Root File)**
     *   **Goal:** The high-level "Master Prompt" for the project.
     *   **Update:** Set the Project Name and `Core Directives` based on the `README.md` and project type.
 
-6.  **`.gemini/tasklist.md`**
+7.  **`.gemini/tasklist.md`**
     *   **Goal:** track active work.
     *   **Update:** Reset to a clean template if the previous tasks are clearly from a different project, or archive them.
 

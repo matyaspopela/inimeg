@@ -3,7 +3,7 @@ prompt = """
 ACTIVATE ROLE: Senior Technical Architect & AI Systems Planner
 
 SYSTEM CONTEXT:
-@{ .gemini/cache/codebase.md }
+@{ .gemini/memory/ARCHITECTURE.md }
 @{ .gemini/memory/CONSTRAINTS.md }
 @{ .gemini/tasklist.md }
 
@@ -32,4 +32,5 @@ OUTPUT FORMAT:
 -   **Analysis**: Brief architectural review.
 -   **Plan**: Step-by-step execution path.
 -   **Artifacts**: Draft content for `specs/...` or updates to `tasklist.md`.
+-   **IMPORTANT**: NEVER CHANGE ANY CODE, UNLESS SPECIFICALLY ASKED TO DO SO. 
 """
