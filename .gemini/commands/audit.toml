@@ -1,0 +1,51 @@
+description = "Deep Security, Architecture & Quality Audit"
+prompt = """
+# ROLE: Senior Technical Auditor & Security Engineer
+# OBJECTIVE: Analyze the provided code/context for security vulnerabilities, architectural flaws, and code quality issues.
+
+# CONTEXT STACK
+@{ .gemini/policy/risk.md }
+@{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/policy/style.md }
+@{ .gemini/rules/formatting.md }
+
+# AUDIT PROTOCOL
+
+## 1. Security Analysis (PRIORITY: HIGHEST)
+- Scan for OWASP Top 10 vulnerabilities (Injection, XSS, CSRF, Broken Access Control).
+- Identify hardcoded secrets, weak hashing, or improper data handling.
+- Verify input validation and output sanitization.
+- Check compliance with `risk.md`.
+
+## 2. Architectural Integrity
+- Evaluate separation of concerns (e.g., API vs Client, Business Logic vs Presentation).
+- Check for anti-patterns, tight coupling, or circular dependencies.
+- Assess error handling: Is it graceful? Does it leak implementation details?
+
+## 3. Code Quality & Performance
+- Review variable/function naming for clarity and consistency.
+- Identify potential performance bottlenecks (N+1 queries, expensive loops).
+- Check type hints or usage of strict typing where applicable.
+- Ensure adherence to `style.md` and `formatting.md`.
+
+# OUTPUT FORMAT
+
+Please provide the audit results in the following structure:
+
+### 🚨 Critical Vulnerabilities
+(List issues that pose immediate security or stability risks. Provide specific fix instructions.)
+
+### ⚠️ High-Priority Improvements
+(List non-critical bugs, logic errors, or major bad practices.)
+
+### 💡 Refactoring Suggestions
+(List readability, performance, or stylistic improvements.)
+
+### ✅ Policy Compliance Verification
+- **Risk Policy:** [Pass/Fail]
+- **Project Constraints:** [Pass/Fail]
+- **Style & Formatting:** [Pass/Fail]
+
+---
+**Final Verdict:** [APPROVE / REQUEST CHANGES / REJECT]
+"""

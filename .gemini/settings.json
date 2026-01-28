@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow_shell": true,
+    "allow_file_read": true,
+    "allow_file_write": true,
+    "allow_web_fetch": true
+  },
+  "project_context": {
+    "preferred_frameworks": [],
+    "test_frameworks": [],
+    "style_guide": "",
+    "package_manager": ""
+  }
+}

@@ -1,0 +1,44 @@
+description = "Initialize/Reset Repository Context"
+prompt = """
+ACTIVATE MODE: INITIALIZATION
+
+CONTEXT:
+The user has switched repositories or wants to re-index the current one. The goal is to update the Gemini CLI's internal context files to reflect the *current* project's structure, technology stack, and conventions.
+
+INSTRUCTIONS:
+Perform a deep scan of the current working directory and UPDATE the following system files.
+Use `glob` and `read_file` to gather necessary information before writing.
+
+1.  **`.gemini/settings.json`**
+    *   **Goal:** Configure tool/framework preferences.
+    *   **Update:** `project_context` object.
+    *   **Logic:** Detect frameworks (React, Vue, Django, Spring) and test runners (Jest, Pytest) from `package.json`, `requirements.txt`, `pom.xml`, etc.
+
+2.  **`.gemini/cache/codebase.md`**
+    *   **Goal:** Provide a map of the project.
+    *   **Update:**
+        *   `## Project Structure`: A file tree of the repo (exclude node_modules, .git, venv).
+        *   `## Documentation & Config`: The content of critical config files (`README.md`, `package.json`, `cargo.toml`, `.env.example`).
+
+3.  **`.gemini/cache/entrypoints.md`**
+    *   **Goal:** Identify where execution starts.
+    *   **Update:** List main entry files (e.g., `src/index.js`, `manage.py`, `main.rs`) grouped by stack (Frontend, Backend, Embedded).
+
+4.  **`.gemini/memory/CONSTRAINTS.md`**
+    *   **Goal:** Set safety rules specific to this repo.
+    *   **Update:**
+        *   `## Infrastructure Constraints`: Add rules based on deployment config (e.g., "Must be compatible with Render" if `render.yaml` exists).
+        *   `## Technical Guardrails`: Mention specific lockfiles to respect (e.g., `package-lock.json`, `poetry.lock`).
+
+5.  **`GEMINI.md` (Root File)**
+    *   **Goal:** The high-level "Master Prompt" for the project.
+    *   **Update:** Set the Project Name and `Core Directives` based on the `README.md` and project type.
+
+6.  **`.gemini/tasklist.md`**
+    *   **Goal:** track active work.
+    *   **Update:** Reset to a clean template if the previous tasks are clearly from a different project, or archive them.
+
+EXECUTION:
+- This is a destructive operation for the cache files. Overwrite them with the new data.
+- Ensure the generated Markdown is clean and readable.
+"""

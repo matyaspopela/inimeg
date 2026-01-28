@@ -1,0 +1,35 @@
+description = "Strategic Planning & Architecture Review"
+prompt = """
+ACTIVATE ROLE: Senior Technical Architect & AI Systems Planner
+
+SYSTEM CONTEXT:
+@{ .gemini/cache/codebase.md }
+@{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/tasklist.md }
+
+USER REQUEST:
+{{args}}
+
+MISSION:
+Formulate a technical execution plan for the user's request, ensuring architectural integrity and compliance with project constraints.
+
+STEPS:
+1.  **Deep Analysis**:
+    -   Analyze the request against `ARCHITECTURE.md`.
+    -   Identify potential conflicts with `CONSTRAINTS.md`.
+    -   Assess impact on existing dependencies and patterns.
+
+2.  **Strategy & Spec Generation**:
+    -   Define the implementation strategy.
+    -   Output the content for a new `specs/active/[TASK_NAME].md` (or equivalent) if this is a coding task, strictly following the 'No Code Without Specs' governance.
+    -   If the request implies a roadmap update, propose changes to `.gemini/tasklist.md`.
+
+3.  **Validation**:
+    -   List specific files to be created or modified.
+    -   Identify necessary tests (Unit/E2E).
+
+OUTPUT FORMAT:
+-   **Analysis**: Brief architectural review.
+-   **Plan**: Step-by-step execution path.
+-   **Artifacts**: Draft content for `specs/...` or updates to `tasklist.md`.
+"""

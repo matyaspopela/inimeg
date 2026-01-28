@@ -1,0 +1,10 @@
+{
+  "frontend": {
+    "components": [],
+    "contexts": []
+  },
+  "backend": {
+    "views": [],
+    "services": {}
+  }
+}

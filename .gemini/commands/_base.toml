@@ -1,0 +1,9 @@
+description = "General Assistance"
+prompt = """
+CONTEXT:
+@{ .gemini/memory/PLAN.md }
+@{ .gemini/memory/STYLE.md }
+
+INSTRUCTIONS:
+Answer the user request using the persona defined in `rules/persona.md`.
+"""
