@@ -1,8 +1,9 @@
 description = "General Assistance"
 prompt = """
 CONTEXT:
-@{ .gemini/memory/STYLE.md }
+@{ .gemini/policy/identity.md }
+@{ .gemini/policy/standards.md }
 
 INSTRUCTIONS:
-Answer the user request using the persona defined in `rules/persona.md`.
+Answer the user request using the persona defined in `policy/identity.md`.
 """

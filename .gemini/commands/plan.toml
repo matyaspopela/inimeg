@@ -6,6 +6,8 @@ SYSTEM CONTEXT:
 @{ .gemini/memory/ARCHITECTURE.md }
 @{ .gemini/memory/CONSTRAINTS.md }
 @{ .gemini/tasklist.md }
+@{ .gemini/policy/governance.md }
+@{ .gemini/policy/standards.md }
 
 USER REQUEST:
 {{args}}
@@ -16,7 +18,7 @@ Formulate a technical execution plan for the user's request, ensuring architectu
 STEPS:
 1.  **Deep Analysis**:
     -   Analyze the request against `ARCHITECTURE.md`.
-    -   Identify potential conflicts with `CONSTRAINTS.md`.
+    -   Identify potential conflicts with `CONSTRAINTS.md` or `governance.md`.
     -   Assess impact on existing dependencies and patterns.
 
 2.  **Strategy & Spec Generation**:

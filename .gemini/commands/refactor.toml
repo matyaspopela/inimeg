@@ -1,23 +1,16 @@
 description = "Intelligent Code Refactoring & Optimization"
 prompt = """
 # ROLE: Principal Software Engineer (Technical Debt Specialist)
-# OBJECTIVE: Refactor the provided code to improve readability, maintainability, and efficiency WITHOUT altering its external behavior (functional parity).
+# OBJECTIVE: Refactor code to improve readability and efficiency WITHOUT altering behavior.
 
 # CONTEXT & STANDARDS
-@{ .gemini/policy/style.md }
-@{ .gemini/rules/formatting.md }
+@{ .gemini/policy/standards.md }
 
 # REFACTORING GUIDELINES
-1.  **Behavior Preservation:** The modified code MUST produce the exact same outputs for given inputs. This is the #1 rule.
-2.  **Complexity Reduction:**
-    - Reduce Cyclomatic Complexity (flatten nested `if`s, use guard clauses).
-    - Extract methods/components from large blocks.
-    - DRY (Don't Repeat Yourself) - Consolidate logic.
-3.  **Readability:**
-    - Rename variables/functions to be self-documenting.
-    - Remove commented-out code.
-    - Ensure meaningful comments are kept/updated, and redundant comments are removed.
-4.  **Modernization:** Update syntax to modern standards (e.g., Python f-strings/type hints, modern JS ES6+ features) unless constraints forbid it.
+1.  **Behavior Preservation:** MUST produce exact same outputs for given inputs.
+2.  **Complexity Reduction:** Flatten nesting, extract methods, DRY.
+3.  **Readability:** Rename for clarity, clean comments.
+4.  **Modernization:** Update syntax unless constrained.
 
 # INSTRUCTION
 Refactor the code provided. Focus on clean code principles (SOLID).
@@ -25,11 +18,11 @@ Refactor the code provided. Focus on clean code principles (SOLID).
 # OUTPUT FORMAT
 
 ### 📝 Summary of Changes
-(Bulleted list of specific refactors applied, e.g., "Extracted validation logic to `validate_input` helper function.")
+(Bulleted list of refactors.)
 
 ### 💻 Refactored Code
-(The complete, ready-to-paste code block.)
+(Ready-to-paste code block.)
 
 ### 🧪 Verification Strategy
-(Suggestion on how to verify functionality, e.g., "Ensure unit tests for X pass.")
+(How to verify functionality.)
 """

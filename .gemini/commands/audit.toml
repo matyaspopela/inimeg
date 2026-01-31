@@ -4,47 +4,43 @@ prompt = """
 # OBJECTIVE: Analyze the provided code/context for security vulnerabilities, architectural flaws, and code quality issues.
 
 # CONTEXT STACK
-@{ .gemini/policy/risk.md }
+@{ .gemini/policy/governance.md }
 @{ .gemini/memory/CONSTRAINTS.md }
-@{ .gemini/policy/style.md }
-@{ .gemini/rules/formatting.md }
+@{ .gemini/policy/standards.md }
 
 # AUDIT PROTOCOL
 
 ## 1. Security Analysis (PRIORITY: HIGHEST)
 - Scan for OWASP Top 10 vulnerabilities (Injection, XSS, CSRF, Broken Access Control).
 - Identify hardcoded secrets, weak hashing, or improper data handling.
-- Verify input validation and output sanitization.
-- Check compliance with `risk.md`.
+- Verify compliance with `governance.md`.
 
 ## 2. Architectural Integrity
-- Evaluate separation of concerns (e.g., Django Backend vs React Frontend).
+- Evaluate separation of concerns.
 - Check for anti-patterns, tight coupling, or circular dependencies.
-- Assess error handling: Is it graceful? Does it leak implementation details?
 
 ## 3. Code Quality & Performance
-- Review variable/function naming for clarity and consistency.
-- Identify potential performance bottlenecks (N+1 queries, expensive loops).
-- Check type hints (Python) or usage of Typescript interfaces.
-- Ensure adherence to `style.md` and `formatting.md`.
+- Review variable/function naming for clarity.
+- Identify performance bottlenecks.
+- Ensure adherence to `standards.md`.
 
 # OUTPUT FORMAT
 
 Please provide the audit results in the following structure:
 
 ### 🚨 Critical Vulnerabilities
-(List issues that pose immediate security or stability risks. Provide specific fix instructions.)
+(Immediate risks + Fix instructions)
 
 ### ⚠️ High-Priority Improvements
-(List non-critical bugs, logic errors, or major bad practices.)
+(Bugs, logic errors, bad practices)
 
 ### 💡 Refactoring Suggestions
-(List readability, performance, or stylistic improvements.)
+(Readability, performance)
 
-### ✅ Policy Compliance Verification
-- **Risk Policy:** [Pass/Fail]
-- **Project Constraints:** [Pass/Fail]
-- **Style & Formatting:** [Pass/Fail]
+### ✅ Policy Compliance
+- **Governance:** [Pass/Fail]
+- **Constraints:** [Pass/Fail]
+- **Standards:** [Pass/Fail]
 
 ---
 **Final Verdict:** [APPROVE / REQUEST CHANGES / REJECT]
