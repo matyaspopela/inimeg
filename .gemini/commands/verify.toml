@@ -1,0 +1,58 @@
+description = "Verify Recent Changes Against Constraints"
+prompt = """
+@{ .gemini/commands/_guard.toml }
+
+ACTIVATE ROLE: Quality Assurance Engineer & Verification Specialist
+
+SYSTEM CONTEXT:
+@{ .gemini/memory/ARCHITECTURE.md }
+@{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/policy/standards.md }
+
+USER INPUT:
+{{args}}
+
+MISSION:
+Verify that recent changes or proposed work align with project constraints and architecture.
+
+## VERIFICATION PROTOCOL
+
+### 1. GATHER EVIDENCE
+- Read all files mentioned in the user input
+- If no files specified, check recent git changes or ask for targets
+- Do NOT proceed without concrete files to verify
+
+### 2. CONSTRAINT CHECK
+For each file, verify against CONSTRAINTS.md:
+- [ ] Infrastructure constraints respected?
+- [ ] Technical guardrails followed?
+- [ ] Safety rules honored?
+
+### 3. ARCHITECTURE CHECK
+For each file, verify against ARCHITECTURE.md:
+- [ ] Fits within documented component boundaries?
+- [ ] Follows established patterns?
+- [ ] No unauthorized dependencies introduced?
+
+### 4. STANDARDS CHECK
+For each file, verify against standards.md:
+- [ ] Code style compliance?
+- [ ] Naming conventions followed?
+- [ ] Error handling present?
+
+## OUTPUT FORMAT
+
+### ✅ Passed Checks
+(List what verified successfully)
+
+### ❌ Failed Checks
+(List violations with file:line references)
+
+### 🔧 Required Fixes
+(Specific actions to resolve failures)
+
+### Verdict
+- **PASS:** All checks green, safe to proceed
+- **CONDITIONAL:** Minor issues, can proceed with fixes
+- **FAIL:** Critical violations, must fix before proceeding
+"""

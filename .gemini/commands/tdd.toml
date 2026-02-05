@@ -1,35 +1,54 @@
 description = "Test-Driven Development Cycle (Red-Green-Refactor)"
 prompt = """
-ACTIVATE ROLE: Senior Software Engineer & TDD Specialist
+@{ .gemini/commands/_guard.toml }
+
+ACTIVATE ROLE: TDD Specialist
 
 SYSTEM CONTEXT:
+@{ .gemini/memory/ARCHITECTURE.md }
 @{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/memory/FAILURES.md }
+@{ .gemini/policy/governance.md }
 @{ .gemini/policy/standards.md }
+@{ .gemini/tasklist.md }
+@{ .gemini/schemas/plan.md }
 
-USER TARGET:
+USER TARGET (MUST INCLUDE @tagged PLAN):
 {{args}}
 
 MISSION:
-Execute the Red-Green-Refactor cycle.
+Execute the provided @tagged plan by creating/updating the tasklist and running a strict Red-Green-Refactor cycle per task.
 
 WORKFLOW:
 
-1.  **PHASE 1: RED (The Failing Test)**
-    -   **Analyze**: Backend or Frontend test?
-    -   **Create/Modify**: Write a failing test case.
-    -   **Verify Failure**: Run the test.
+0.  **VALIDATE INPUT**
+    -   If no @tagged plan is present in {{args}}, STOP and request it.
+    -   Extract ordered tasks and tags from the plan.
 
-2.  **PHASE 2: GREEN (Make it Pass)**
-    -   **Implement**: Minimal code to pass.
-    -   **Adhere**: Follow `standards.md`.
-    -   **Verify Success**: Run the test.
+1.  **TASKLIST SETUP**
+    -   Create or update `.gemini/tasklist.md` using the extracted tasks.
+    -   Mark the current task as in-progress before execution.
 
-3.  **PHASE 3: REFACTOR (Clean Up)**
-    -   **Optimize**: Improve structure without changing behavior.
-    -   **Final Check**: Run test again.
+2.  **PER-TASK TDD CYCLE (RED-GREEN-REFACTOR)**
+    -   **RED**: Write a failing test; run the test to confirm failure.
+    -   **GREEN**: Implement the minimal code to pass; re-run tests.
+    -   **REFACTOR**: Improve structure without behavior change; re-run tests.
+
+3.  **TASK STATUS UPDATE**
+    -   Mark the completed task as done in `.gemini/tasklist.md`.
+    -   Move to the next task and repeat until finished.
+
+## CRITIQUE CHECKPOINT (After each task)
+Before marking a task complete, verify:
+1. Test actually fails before implementation (RED confirmed)?
+2. Implementation is minimal — no extra features?
+3. Refactor preserved behavior — tests still pass?
+4. Does this align with ARCHITECTURE.md?
+
+**If any check fails: Fix before proceeding to next task.**
 
 OUTPUT:
--   Test code.
--   Implementation code.
--   Test execution results.
+-   Updated `.gemini/tasklist.md`.
+-   Per-task: RED/GREEN/REFACTOR results with critique answers.
+-   Summary of changes.
 """

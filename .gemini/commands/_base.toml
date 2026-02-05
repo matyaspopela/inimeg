@@ -1,9 +1,14 @@
 description = "General Assistance"
 prompt = """
+@{ .gemini/commands/_guard.toml }
+
 CONTEXT:
 @{ .gemini/policy/identity.md }
 @{ .gemini/policy/standards.md }
 
 INSTRUCTIONS:
-Answer the user request using the persona defined in `policy/identity.md`.
+Answer the user request using the persona and standards defined above.
+
+If the request requires code changes, suggest using `/plan` first.
+If the request is ambiguous, ask clarifying questions.
 """

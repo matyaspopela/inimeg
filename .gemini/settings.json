@@ -1,9 +1,9 @@
 {
   "permissions": {
-    "allow_shell": true,
+    "allow_shell": false,
     "allow_file_read": true,
-    "allow_file_write": true,
-    "allow_web_fetch": true
+    "allow_file_write": false,
+    "allow_web_fetch": false
   },
   "project_context": {
     "preferred_frameworks": [],
@@ -11,5 +11,8 @@
     "style_guide": "",
     "package_manager": ""
   },
-  "mcpServers": {}
+  "mcpServers": {},
+  "notes": {
+    "permissions_policy": "Defaults are restrictive. /setrepo will enable writes after scanning. Shell access requires explicit user grant."
+  }
 }

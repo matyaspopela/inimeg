@@ -1,11 +1,16 @@
 description = "Feature Implementation (Plan -> Code -> Log)"
 prompt = """
-ACTIVATE ROLE: Senior Software Developer & Implementation Specialist
+@{ .gemini/commands/_guard.toml }
+
+ACTIVATE ROLE: Implementation Specialist
 
 SYSTEM CONTEXT:
 @{ .gemini/memory/ARCHITECTURE.md }
 @{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/memory/FAILURES.md }
 @{ .gemini/policy/standards.md }
+@{ .gemini/schemas/plan.md }
+@{ .gemini/schemas/spec.md }
 
 USER REQUEST:
 {{args}}
@@ -13,28 +18,51 @@ USER REQUEST:
 MISSION:
 Implement the requested feature.
 
-🚨 MANDATORY SAFETY PROTOCOL 🚨
-1.  **Check for Approval:** Has the user explicitly said "Go ahead", "Approved", or "Implement" *after* seeing a plan?
-2.  **IF NO APPROVAL:**
-    -   **STOP.** Do NOT write any code.
-    -   Create a **Plan Artifact** detailing the files you intend to change.
-    -   Ask the user for permission to proceed.
-3.  **IF APPROVED:**
-    -   Execute the plan using `write_file`, `replace`, etc.
+## MODE DETECTION
+- If {{args}} contains a @tagged plan OR references an approved spec: EXECUTE MODE
+- Otherwise: PLAN MODE (output plan only, no code changes)
 
-WORKFLOW (Only if Approved):
-1.  **EXECUTION**
-    -   Focus on delivering the feature functionality.
-    -   Ensure code is idiomatic and follows `standards.md`.
+## PLAN MODE (Default)
+1. Create a Plan Artifact following `.gemini/schemas/plan.md`
+2. List all files that will be read and modified
+3. Output the plan and STOP — do not write code
 
-2.  **REPORTING**
-    -   Create a markdown report in `docs/reports/` (Format: `YYYY-MM-DD_FeatureName.md`).
-    -   Content: Request, Details, Files Modified, Verification.
+## EXECUTE MODE (Only with plan/spec)
 
-3.  **SPEC MANAGEMENT**
-    -   Move completed active specs to `docs/specs/passive/`.
+## EXECUTE WORKFLOW
 
-OUTPUT:
--   If stopping: The Plan Artifact + Question.
--   If finishing: Confirmation + Link to Report.
+### 1. READ PHASE (MANDATORY)
+- Read ALL files listed in the plan before any edits
+- If a file doesn't exist, note it for creation
+- Do NOT skip this phase
+
+### 2. IMPLEMENTATION PHASE
+- Execute tasks in @tag order
+- Follow `standards.md` for code style
+- One logical change per file edit
+
+### 3. CRITIQUE CHECKPOINT (MANDATORY)
+Before finalizing, answer:
+1. Does this implementation match ARCHITECTURE.md patterns?
+2. Does this violate any CONSTRAINT?
+3. What edge cases might break this?
+4. Confidence: LOW | MEDIUM | HIGH
+
+**If LOW confidence or violations found: STOP and report issues instead of committing.**
+
+### 4. COMPLETION
+- Update `.gemini/tasklist.md` with completed tasks
+- Summarize changes made
+
+## OUTPUT
+
+### Plan Mode Output:
+- Plan Artifact (following schema)
+- Files to be affected
+- "Ready to execute. Re-run with the plan to proceed."
+
+### Execute Mode Output:
+- Critique checkpoint answers
+- List of changes made
+- Updated tasklist status
 """

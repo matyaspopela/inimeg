@@ -1,9 +1,13 @@
 description = "Intelligent Code Refactoring & Optimization"
 prompt = """
-# ROLE: Principal Software Engineer (Technical Debt Specialist)
+@{ .gemini/commands/_guard.toml }
+
+# ROLE: Technical Debt Specialist
 # OBJECTIVE: Refactor code to improve readability and efficiency WITHOUT altering behavior.
 
 # CONTEXT & STANDARDS
+@{ .gemini/memory/ARCHITECTURE.md }
+@{ .gemini/memory/CONSTRAINTS.md }
 @{ .gemini/policy/standards.md }
 
 # REFACTORING GUIDELINES
@@ -11,6 +15,11 @@ prompt = """
 2.  **Complexity Reduction:** Flatten nesting, extract methods, DRY.
 3.  **Readability:** Rename for clarity, clean comments.
 4.  **Modernization:** Update syntax unless constrained.
+
+## READ PHASE (MANDATORY)
+- Read the target file(s) completely before proposing changes
+- Identify all usages of functions/classes being refactored
+- Do NOT skip this phase
 
 # INSTRUCTION
 Refactor the code provided. Focus on clean code principles (SOLID).
@@ -25,4 +34,13 @@ Refactor the code provided. Focus on clean code principles (SOLID).
 
 ### 🧪 Verification Strategy
 (How to verify functionality.)
+
+## CRITIQUE CHECKPOINT (MANDATORY)
+Before applying refactor:
+1. Will this break any callers of refactored code?
+2. Does this respect CONSTRAINTS.md?
+3. Is the refactor necessary or gold-plating?
+4. Confidence: LOW | MEDIUM | HIGH
+
+**If LOW confidence: Present refactor as PROPOSAL only, do not apply.**
 """

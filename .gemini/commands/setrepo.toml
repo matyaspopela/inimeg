@@ -1,5 +1,7 @@
 description = "Initialize/Reset Repository Context"
 prompt = """
+# NOTE: This command does NOT use _guard.toml — it creates the context that guard checks.
+
 ACTIVATE MODE: INITIALIZATION
 
 CONTEXT:
@@ -46,14 +48,6 @@ Use `glob` and `read_file` to gather necessary information before writing.
 7.  **`.gemini/tasklist.md`**
     *   **Goal:** track active work.
     *   **Update:** Reset to a clean template if the previous tasks are clearly from a different project, or archive them.
-
-8.  **Documentation Structure**
-    *   **Goal:** Ensure standard documentation folders exist for the workflow.
-    *   **Action:** Check for and create the following directories if they don't exist:
-        *   `docs/reports` (For implementation logs)
-        *   `docs/specs/active` (For current task specifications)
-        *   `docs/specs/passive` (For completed/archived specifications)
-    *   **Logic:** Use `run_shell_command` with `mkdir -p` (or platform equivalent) to ensure these paths exist.
 
 EXECUTION:
 - This is a destructive operation for the cache files. Overwrite them with the new data.

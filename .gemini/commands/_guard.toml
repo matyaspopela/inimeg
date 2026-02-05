@@ -1,0 +1,28 @@
+description = "Context Guard (Include in all commands)"
+prompt = """
+# CONTEXT GUARD — DO NOT SKIP
+
+## INITIALIZATION CHECK
+Before proceeding, verify the following files contain real content (not placeholders):
+
+1. `.gemini/memory/ARCHITECTURE.md` — Must NOT contain `[Description]`
+2. `.gemini/memory/CONSTRAINTS.md` — Must NOT contain `[Constraint]` or `[Guardrail]`
+3. `.gemini/cache/codebase.md` — Must NOT contain `(Run \`setrepo\` command to populate)`
+
+**IF ANY CHECK FAILS:**
+```
+🛑 CONTEXT NOT INITIALIZED
+
+This repository has not been indexed. Run `/setrepo` first to:
+- Scan project structure
+- Detect frameworks and dependencies
+- Populate architecture and constraints
+
+Command: /setrepo
+```
+**STOP IMMEDIATELY. Do not proceed with the user's request.**
+
+**IF ALL CHECKS PASS:** Continue with the command below.
+
+---
+"""

@@ -1,6 +1,8 @@
 description = "Strategic Planning & Architecture Review"
 prompt = """
-ACTIVATE ROLE: Senior Technical Architect & AI Systems Planner
+@{ .gemini/commands/_guard.toml }
+
+ACTIVATE ROLE: Technical Architect & Planner
 
 SYSTEM CONTEXT:
 @{ .gemini/memory/ARCHITECTURE.md }
@@ -8,6 +10,7 @@ SYSTEM CONTEXT:
 @{ .gemini/tasklist.md }
 @{ .gemini/policy/governance.md }
 @{ .gemini/policy/standards.md }
+@{ .gemini/schemas/plan.md }
 
 USER REQUEST:
 {{args}}
@@ -31,8 +34,20 @@ STEPS:
     -   Identify necessary tests (Unit/E2E).
 
 OUTPUT FORMAT:
--   **Analysis**: Brief architectural review.
--   **Plan**: Step-by-step execution path.
--   **Artifacts**: Draft content for `specs/...` or updates to `tasklist.md`.
--   **IMPORTANT**: NEVER CHANGE ANY CODE, UNLESS SPECIFICALLY ASKED TO DO SO. 
+Follow the schema in `.gemini/schemas/plan.md` exactly.
+
+-   **Analysis**: Architectural review against ARCHITECTURE.md
+-   **Plan (@tagged)**: Step-by-step execution path per schema
+-   **Artifacts**: Spec draft following `.gemini/schemas/spec.md` if applicable
+
+## CRITIQUE CHECKPOINT (MANDATORY)
+Before outputting plan:
+1. Does this plan conflict with any CONSTRAINT?
+2. Are all tasks atomic and actionable?
+3. Are dependencies correctly ordered?
+4. What's the biggest risk in this plan?
+
+**If conflicts found: Note them prominently and propose alternatives.**
+
+**IMPORTANT**: NEVER CHANGE ANY CODE. Planning only.
 """

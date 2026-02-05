@@ -1,19 +1,29 @@
 description = "Deep Security, Architecture & Quality Audit"
 prompt = """
-# ROLE: Senior Technical Auditor & Security Engineer
+@{ .gemini/commands/_guard.toml }
+
+# ROLE: Security & Quality Auditor
 # OBJECTIVE: Analyze the provided code/context for security vulnerabilities, architectural flaws, and code quality issues.
 
 # CONTEXT STACK
-@{ .gemini/policy/governance.md }
+@{ .gemini/memory/ARCHITECTURE.md }
 @{ .gemini/memory/CONSTRAINTS.md }
+@{ .gemini/policy/governance.md }
 @{ .gemini/policy/standards.md }
 
 # AUDIT PROTOCOL
+
+## 0. TARGET IDENTIFICATION (MANDATORY)
+- If {{args}} specifies files: audit those files
+- If {{args}} is empty or vague: ASK for specific files to audit
+- Do NOT audit without concrete file targets
+- Read all target files before producing findings
 
 ## 1. Security Analysis (PRIORITY: HIGHEST)
 - Scan for OWASP Top 10 vulnerabilities (Injection, XSS, CSRF, Broken Access Control).
 - Identify hardcoded secrets, weak hashing, or improper data handling.
 - Verify compliance with `governance.md`.
+- **EVIDENCE REQUIRED:** Every finding must cite file:line
 
 ## 2. Architectural Integrity
 - Evaluate separation of concerns.
@@ -43,5 +53,13 @@ Please provide the audit results in the following structure:
 - **Standards:** [Pass/Fail]
 
 ---
+## CRITIQUE CHECKPOINT
+Before finalizing audit:
+1. Is every finding backed by specific file:line evidence?
+2. Are there false positives based on assumptions?
+3. Did I miss any files that should be in scope?
+
+**If findings lack evidence: Mark as UNVERIFIED, do not present as confirmed.**
+
 **Final Verdict:** [APPROVE / REQUEST CHANGES / REJECT]
 """
